@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
  * 随机颜色值
  * return：#ffffff
  */
@@ -27,7 +28,6 @@ function _randomNum(m, n) {
  */
 function _randomString(len) {
     len = len || 32;
-
     var
         /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
         $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678',
@@ -37,10 +37,8 @@ function _randomString(len) {
     for (i = 0; i < len; i++) {
         pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
     }
-
     return pwd;
 }
-
 
 //是否是手机号
 function _isPhone(val) {

@@ -16,7 +16,11 @@
     "url": "https://github.com/zoeDylan/jobTemplate/issues"
   },
   "homepage": "https://github.com/zoeDylan/jobTemplate#readme",
+  "dependencies": {
+    "gulp-watch":"*",
+    "gulp-jsmin":"*"
+  },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "*"
   }
 }
