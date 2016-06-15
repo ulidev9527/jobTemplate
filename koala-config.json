@@ -7,12 +7,8 @@
 		 	"dest": "statics/css"
 		 },
 		 {	
-		 	"src": "source/sass",
-		 	"dest": "statics/sass"
-		 },
-		 {	
-		 	"src": "source/js/",
-		 	"dest": "statics/js/"
+		 	"src": "source/js",
+		 	"dest": "statics/js"
 		 }
 	],
 
