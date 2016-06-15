@@ -1,4 +1,4 @@
-﻿
+
 /*
  * 随机颜色值
  * return：#ffffff
