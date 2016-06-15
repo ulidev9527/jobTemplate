@@ -1,0 +1,22 @@
+{
+  "name": "jobtemplate",
+  "version": "0.0.1",
+  "description": "一个工作上模版，方便开发web页面时直接使用。",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoeDylan/jobTemplate.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zoeDylan/jobTemplate/issues"
+  },
+  "homepage": "https://github.com/zoeDylan/jobTemplate#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
