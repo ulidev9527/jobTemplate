@@ -15,7 +15,7 @@
 
 ####2016-07-20 添加gulp自动化
 
-使用`gulp.js`进行编译,具体操作请移步[http://www.gulpjs.com.cn/docs/api/](gulp.js)
+使用`gulp.js`进行编译,具体操作请移步[gulp.js](http://www.gulpjs.com.cn/docs/api/)
 
 
 
