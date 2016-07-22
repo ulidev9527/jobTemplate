@@ -32,7 +32,6 @@ function _css(){
             }
         }))
         .pipe(gulp.dest('statics/css'));
-
 }
 
 function _images(){
@@ -48,7 +47,9 @@ function _build(){
 
 
 gulp.task('default', function () {
-    gulp.watch('./source',_build);
+    gulp.watch('./source/js/*.js',_js);
+    gulp.watch('./source/less/*.less',_css);
+    gulp.watch('./source/images/*.*', _images);
 });
 
 gulp.task('build', _build);
