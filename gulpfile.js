@@ -3,16 +3,28 @@ var gulp = require('gulp'),
     minify = require('gulp-minifier'),
     path = require('path');
 
+function _js(){
+     gulp.src('source/js/*.js')
+        .pipe(minify({
+            minify: true,
+            collapseWhitespace: true,
+            conservativeCollapse: true,
+            minifyJS: true,
+            getKeptComment: function (content, filePath) {
+                var m = content.match(/\/\*![\s\S]*?\*\//img);
+                return m && m.join('\n') + '\n' || '';
+            }
+        }))
+        .pipe(gulp.dest('statics/js'));
+}
 
-gulp.task('default', function () {
-    // 将你的默认的任务代码放在这
+function _css(){
     gulp.src('source/less/*.less')
         .pipe(less())
         .pipe(minify({
             minify: true,
             collapseWhitespace: true,
             conservativeCollapse: true,
-            minifyJS: true,
             minifyCSS: true,
             getKeptComment: function (content, filePath) {
                 var m = content.match(/\/\*![\s\S]*?\*\//img);
@@ -21,17 +33,22 @@ gulp.task('default', function () {
         }))
         .pipe(gulp.dest('statics/css'));
 
-    gulp.src('source/js/*.js')
-        .pipe(minify({
-            minify: true,
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            minifyJS: true,
-            minifyCSS: true,
-            getKeptComment: function (content, filePath) {
-                var m = content.match(/\/\*![\s\S]*?\*\//img);
-                return m && m.join('\n') + '\n' || '';
-            }
-        }))
-        .pipe(gulp.dest('statics/js'));
+}
+
+function _images(){
+    gulp.src('source/images/*.*')
+        .pipe(gulp.dest('statics/images'));
+}
+
+function _build(){
+    _js();
+    _css();
+    _images();
+}
+
+
+gulp.task('default', function () {
+    gulp.watch('./source',_build);
 });
+
+gulp.task('build', _build);

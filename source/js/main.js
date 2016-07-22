@@ -50,7 +50,7 @@ function _randomString(length, chars) {
 function _randomColor() {
     return "#" + ("00000" + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6);
 }
-_
+
 /*
  * 去字符串首尾空格
  */
