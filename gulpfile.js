@@ -35,8 +35,8 @@ function _css(){
 }
 
 function _images(){
-    gulp.src('source/images/*.*')
-        .pipe(gulp.dest('statics/images'));
+    gulp.src('source/image/*.*')
+        .pipe(gulp.dest('statics/image'));
 }
 
 function _build(){
