@@ -10,20 +10,22 @@
  * 
  */
 
+
 /*
  * 随机值
  * min:最小值
  * max:最大值
+ * noInt:是否返回小数
  * randomNum(10,20);获取10到20的值
  * randomNum(10);获取0-10的值
- * randomNum(1.0,10);获取0-10的值(小数)
+ *
  */
-function _randomNum(min, max) {
+function _randomNum(min, max, noInt) {
     if (typeof (max) == 'undefined') {
         max = min;
         min = 0;
     }
-    return Math.random() * (max - min) + min;
+    return noInt ? Math.random() * (max - min) + min : parseInt(Math.random() * (max - min) + min);
 }
 
 /*
