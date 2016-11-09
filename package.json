@@ -9,7 +9,8 @@
   "dependencies": {
     "gulp":"*",
     "gulp-less": "*",
-    "gulp-minifier":"*"
+    "gulp-minifier":"*",
+    "gulp-autoprefixer":"*"
   },
   "repository": {
     "type": "git",

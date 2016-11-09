@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
     minify = require('gulp-minifier'),
+    autoprefixer = require('gulp-autoprefixer'),
     path = require('path');
 
 function _js(){
@@ -21,6 +22,7 @@ function _js(){
 function _css(){
     gulp.src('source/less/*.less')
         .pipe(less())
+        .pipe(autoprefixer())
         .pipe(minify({
             minify: true,
             collapseWhitespace: true,
