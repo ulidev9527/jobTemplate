@@ -1,7 +1,13 @@
-var gulp = require('gulp'),
+var
+    gulp = require('gulp'),
+    //less文件处理
     less = require('gulp-less'),
+    //压缩
     minify = require('gulp-minifier'),
+    //css自动兼容处理
     autoprefixer = require('gulp-autoprefixer'),
+    //文件合并
+    concat = require('gulp-concat'),
     path = require('path');
 
 function _js(){
@@ -15,7 +21,8 @@ function _js(){
                 var m = content.match(/\/\*![\s\S]*?\*\//img);
                 return m && m.join('\n') + '\n' || '';
             }
-        }))
+         }))
+        .pipe(concat('main.js')) 
         .pipe(gulp.dest('statics/js'));
 }
 

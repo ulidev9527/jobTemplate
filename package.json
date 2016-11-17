@@ -10,7 +10,8 @@
     "gulp":"*",
     "gulp-less": "*",
     "gulp-minifier":"*",
-    "gulp-autoprefixer":"*"
+    "gulp-autoprefixer":"*",
+    "gulp-concat":"*"
   },
   "repository": {
     "type": "git",

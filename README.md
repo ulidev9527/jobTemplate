@@ -25,3 +25,6 @@
     1.添加css兼容处理gulp-autoprefixer
     2.添加弹窗样式、swiper插件和jq3.0
     3.移除Koala编译
+
+####2016-11-17
+    添加js文件合并，合并js是注意js排序
