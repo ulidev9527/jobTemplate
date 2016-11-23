@@ -72,7 +72,7 @@
 
 >>> 清除字符串前后空格[无集成]
 
-    ' trim '.trim();//trim
+>>>>    ' trim '.trim();//trim
 
 > #### _randomNum
 
@@ -80,9 +80,11 @@
 
 >>> 获取随机数[无集成]
 
-    _randomNum(10,20);//获取10到20的随机整数
-    _randomNum(10);//获取0-10的随机整数
-    _randomNum(10,20,5);//获取10-20的随机5位小数
+>>>>    _randomNum(10,20);//获取10到20的随机整数
+
+>>>>    _randomNum(10);//获取0-10的随机整数
+
+>>>>    _randomNum(10,20,5);//获取10-20的随机5位小数
 
 > #### _randomString
 
@@ -90,9 +92,11 @@
 
 >>> 获取随机字符串[集成：_randomNum]
 
-    _randomString();//获取32位长度的随机字符串
-    _randomString(10);//获取10位长度的随机字符串
-    _randomString(10,'zoeDylan');//用zoeDylan生成10位长度的随机字符串
+>>>>    _randomString();//获取32位长度的随机字符串
+
+>>>>    _randomString(10);//获取10位长度的随机字符串
+
+>>>>    _randomString(10,'zoeDylan');//用zoeDylan生成10位长度的随机字符串
 
 > #### _randomColor
 
@@ -100,7 +104,7 @@
 
 >>> 获取随机颜色值[无集成]
 
-    _randomColor();//#fadacd 返回一个16进制的颜色值
+>>>>    _randomColor();//#fadacd 返回一个16进制的颜色值
 
 > #### _isPhone
 
@@ -108,8 +112,9 @@
 
 >>> 判断是否是手机号码[无集成]
 
-    _isPhone(13800138000);//true
-    _isPhone(1380013800);//false
+>>>>    _isPhone(13800138000);//true
+
+>>>>    _isPhone(1380013800);//false
 
 > #### _isEmail
 
@@ -117,8 +122,9 @@
 
 >>> 判断是否是邮箱[无集成]
 
-    _isEmail('627213037@qq.com');//true
-    _isEmail('6@qq.com');//false
+>>>>    _isEmail('627213037@qq.com');//true
+
+>>>>    _isEmail('6@qq.com');//false
 
 ## 日志
 
