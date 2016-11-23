@@ -12,7 +12,7 @@
 
 > [API for zoeDylan.js](#api "zoeDylan.js的API文档")
 
->> [**String.trim** 清除字符串前后空格](#string.trim "清除字符串前后空格")
+>> [**String.trim** 清除字符串前后空格](#stringtrim "清除字符串前后空格")
 
 >> [**_randomNum** 获取随机数](#_randomnum "获取随机数")
 
