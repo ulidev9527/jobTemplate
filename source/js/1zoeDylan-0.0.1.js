@@ -1,8 +1,9 @@
 /*!
  * JS函数扩展
  * 作者：zoeDylan
- * 描述：开发或收集网络上各种高性能、实用性高、兼容解决等JS功能，方便平时开发
+ * 描述：不依赖任何外包，纯js打造，主要内容是开发或收集网络上各种高性能、实用性高、兼容解决等JS功能，方便平时开发
  *
+ * zoeDylan-0.0.1.js
  */
 
 /*______________________________兼容处理 begin*/
@@ -63,13 +64,17 @@ String.prototype.trim = function () {
 /*______________________________功能开发 begin*/
 
 /** 
- * 随机值
+ * 随机数
+ * 
+ * _randomNum(min[,max[,decimal]])
+ * 
  * min:最小值
  * max:最大值
  * dec:是否返回小数位数，最大返回10位小数
- * randomNum(10,20);//获取10到20的随机整数
- * randomNum(10);//获取0-10的随机整数
- * randomNum(10,20,5);//获取10-20的随机5位小数
+ * 
+ * _randomNum(10,20);//获取10到20的随机整数
+ * _randomNum(10);//获取0-10的随机整数
+ * _randomNum(10,20,5);//获取10-20的随机5位小数
  *
  */
 function _randomNum(min, max, dec) {
@@ -83,9 +88,17 @@ function _randomNum(min, max, dec) {
 
 /** 
  * 随机字符串
+ * 
+ * _randomString([length[,chars]])
+ * 
  * 默认32位字符
  * length:返回字符串长度
  * chars:指定字符串
+ * 
+ * _randomString();//获取32位长度的随机字符串
+ * _randomString(10);//获取10位长度的随机字符串
+ * _randomString(10,'zoeDylan');//用zoeDylan生成10位长度的随机字符串
+ * 
  */
 function _randomString(length, chars) {
     length = length || 32;
@@ -214,106 +227,5 @@ function _isEmail(val) {
     return /^[0-9a-z][a-z0-9\._-]{1,}@[a-z0-9-]{1,}[a-z0-9]\.[a-z\.]{1,}[a-z]$/.test(val)
 }
 
-
-/**
-    微信分享
-
-    //添加分享内容 *为必须
-    _wx.run({
-        debug: true||false false,
-        appId: '',//*
-        timestamp: '',//*
-        nonceStr: '',//*
-        signature: '',//*
-        jsApiList:[] [
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'onMenuShareQQ',
-            'onMenuShareWeibo',
-            'onMenuShareQZone'
-        ]
-    },{
-        title:'',//分享标题*
-        desc:'',//分享描述*
-        imgUrl :'',//分享图片*
-        link: '',//分享地址*
-        success:function,//分享成功
-        cancel:function //分享失败
-    }});
-
-*/
-var _wx = (function () {
-    //分享成功
-    function shareSuccess() { }
-    //分享失败
-    function shareCancel() { }
-
-    //微信权限配置
-    function setConfig(wxData) {
-        wxData = wxData ? wxData : {};
-        var cfg = {
-            debug: wxData.debug || false,
-            appId: wxData.appId,
-            timestamp: wxData.timestamp,
-            nonceStr: wxData.nonceStr,
-            signature: wxData.signature,
-            jsApiList: wxData.jsApiList || [
-                'onMenuShareTimeline',
-                'onMenuShareAppMessage',
-                'onMenuShareQQ',
-                'onMenuShareWeibo',
-                'onMenuShareQZone'
-            ]
-        }
-        wx.config(cfg);
-    }
-
-    //微信文案配置
-    function run(config, op) {
-        setConfig(config);
-        //标题
-        var
-            title = op.title,
-            desc = op.desc,
-            imgUrl = op.imgUrl,
-            link = op.link;
-
-        op.success ? shareSuccess = op.success : '';
-        op.cancel ? shareCancel = op.cancel : '';
-
-        wx.error(function (res) {
-            console.log('微信配置错误。');
-            console.log(res);
-        });
-        wx.ready(function () {
-            var config = {
-                title: title,
-                desc: desc,
-                link: link,
-                imgUrl: imgUrl,
-                success: shareEnd,
-                cancel: shareCancel
-            }
-            wx.onMenuShareQQ(config);
-            wx.onMenuShareTimeline(config);
-            wx.onMenuShareAppMessage(config);
-            wx.onMenuShareWeibo(config);
-            wx.onMenuShareQZone(config);
-        });
-    }
-
-    function setShareSuccess(fn) {
-        typeof fn == 'function' ? (shareSuccess = fn) : '';
-    }
-    function setShareCancel(fn) {
-        typeof fn == 'function' ? (shareSuccess = fn) : '';
-    }
-
-    return {
-        run: run,
-        setShareSuccess: setShareSuccess,
-        setShareCancel: setShareCancel
-    }
-})();
 
 /*______________________________功能开发 end*/
