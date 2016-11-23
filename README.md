@@ -10,19 +10,19 @@
 
 > [插件官网网站](#插件官网网站 "插件官网网站")
 
-> [API for zoeDylan.js](#API "zoeDylan.js的API文档")
+> [API for zoeDylan.js](#api "zoeDylan.js的API文档")
 
->> [**String.trim** 清除字符串前后空格](#String.trim "清除字符串前后空格")
+>> [**String.trim** 清除字符串前后空格](#string.trim "清除字符串前后空格")
 
->> [**_randomNum** 获取随机数](#_randomNum "获取随机数")
+>> [**_randomNum** 获取随机数](#_randomnum "获取随机数")
 
->> [**_randomString** 获取随机字符串](#_randomString "获取随机字符串")
+>> [**_randomString** 获取随机字符串](#_randomstring "获取随机字符串")
 
->> [**_randomColor** 获取随机颜色值](#_randomColor "获取随机颜色值")
+>> [**_randomColor** 获取随机颜色值](#_randomcolor "获取随机颜色值")
 
->> [**_isPhone** 判断是否是手机号码](#_isPhone "判断是否是手机号码")
+>> [**_isPhone** 判断是否是手机号码](#_isphone "判断是否是手机号码")
 
->> [**_isEmail** 判断是否是邮箱](#_isEmail "判断是否是邮箱")
+>> [**_isEmail** 判断是否是邮箱](#_isemail "判断是否是邮箱")
 
 ## 项目说明
 
@@ -66,54 +66,56 @@
 
 >> 集成和无集成代表是否调用的内部的函数
 
-#### String.trim
+> #### String.trim
 
-> Sting.trim()--清除字符串前后空格[无集成]
+>> Sting.trim()
+
+>>> 清除字符串前后空格[无集成]
 
     ' trim '.trim();//trim
 
-#### _randomNum
+> #### _randomNum
 
-> _randomNum(min[,max[,decimal]])
+>> _randomNum(min[,max[,decimal]])
 
->> 获取随机数[无集成]
+>>> 获取随机数[无集成]
 
     _randomNum(10,20);//获取10到20的随机整数
     _randomNum(10);//获取0-10的随机整数
     _randomNum(10,20,5);//获取10-20的随机5位小数
 
-#### _randomString
+> #### _randomString
 
-> _randomString([length[,chars]])
+>> _randomString([length[,chars]])
 
->> 获取随机字符串[集成：_randomNum]
+>>> 获取随机字符串[集成：_randomNum]
 
     _randomString();//获取32位长度的随机字符串
     _randomString(10);//获取10位长度的随机字符串
     _randomString(10,'zoeDylan');//用zoeDylan生成10位长度的随机字符串
 
-#### _randomColor
+> #### _randomColor
 
-> _randomColor()
+>> _randomColor()
 
->> 获取随机颜色值[无集成]
+>>> 获取随机颜色值[无集成]
 
     _randomColor();//#fadacd 返回一个16进制的颜色值
 
-#### _isPhone
+> #### _isPhone
 
-> _isPhone(val)
+>> _isPhone(val)
 
->> 判断是否是手机号码[无集成]
+>>> 判断是否是手机号码[无集成]
 
     _isPhone(13800138000);//true
     _isPhone(1380013800);//false
 
-#### _isEmail
+> #### _isEmail
 
-> _isEmail(val)
+>> _isEmail(val)
 
->> 判断是否是邮箱[无集成]
+>>> 判断是否是邮箱[无集成]
 
     _isEmail('627213037@qq.com');//true
     _isEmail('6@qq.com');//false
