@@ -130,21 +130,21 @@
 
 > #### 2016-11-23
 
->> 1.requestAnimationFrame兼容添加
+>> 1. requestAnimationFrame兼容添加
 
->> 2.微信js配置添加 
+>> 2. 微信js配置添加 
 
->> 3.jQuery更新至3.1.1
+>> 3. jQuery更新至3.1.1
 
->> 4.swiper更新至3.4.0
+>> 4. swiper更新至3.4.0
 
->> 5.zoeDylan.js的API添加
+>> 5. zoeDylan.js的API添加
 
->> 6.添加版本号
+>> 6. 添加版本号
 
->> 7.添加插件官网
+>> 7. 添加插件官网
 
->> 8.添加README.md文件导航
+>> 8. 添加README.md文件导航
 
 > 2016-11-17
 
@@ -152,11 +152,11 @@
 
 > 2016-11-09
 
->> 1.添加css兼容处理gulp-autoprefixer
+>> 1. 添加css兼容处理gulp-autoprefixer
 
->> 2.添加弹窗样式、swiper插件和jq3.0
+>> 2. 添加弹窗样式、swiper插件和jq3.0
 
->> 3.移除Koala编译
+>> 3. 移除Koala编译
 
 > 2016-07-20 
 
