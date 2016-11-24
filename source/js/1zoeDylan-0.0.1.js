@@ -64,7 +64,7 @@ String.prototype.trim = function () {
 /*______________________________功能开发 begin*/
 
 /** 
- * 随机数
+ * 获取随机数[无依赖]
  * 
  * _randomNum(min[,max[,decimal]])
  * 
@@ -87,7 +87,7 @@ function _randomNum(min, max, dec) {
 }
 
 /** 
- * 随机字符串
+ * 获取随机字符串[依赖：_randomNum]
  * 
  * _randomString([length[,chars]])
  * 
@@ -112,8 +112,11 @@ function _randomString(length, chars) {
 }
 
 /** 
- * 随机颜色值
- * 返回：#XXXXXX(16进制)
+ * 获取随机颜色值[无依赖]
+ *
+ * _randomColor()
+ *
+ * _randomColor();//#XXXXXX(16进制)
  */
 function _randomColor() {
     return "#" + ("00000" + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6);
@@ -214,14 +217,14 @@ var _cookie = (function () {
 })();
 
 /**
- * 是否是手机号
+ * 是否是手机号[无依赖]
  */
 function _isPhone(val) {
     return /^1[3|4|5|7|8][0-9]\d{8}$/.test(val);
 }
 
 /**
- * 是否是邮箱号
+ * 是否是邮箱号[无依赖]
  */
 function _isEmail(val) {
     return /^[0-9a-z][a-z0-9\._-]{1,}@[a-z0-9-]{1,}[a-z0-9]\.[a-z\.]{1,}[a-z]$/.test(val)

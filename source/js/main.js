@@ -1,5 +1,13 @@
+/*!
+ *  main.js文件里面内容需依赖其它插件
+ *
+ *  依赖中出现 #*** 代表的是页面标签id
+ *
+ */
+
+
 /**
-    微信分享
+    微信分享[依赖：http://res.wx.qq.com/open/js/jweixin-1.0.0.js]
 
     //添加分享内容 *为必须
     _wx.run({
@@ -96,5 +104,72 @@ var _wx = (function () {
         run: run,
         setShareSuccess: setShareSuccess,
         setShareCancel: setShareCancel
+    }
+})();
+
+
+
+/**
+ *
+ * 页面弹窗（常用于手机浮窗）[依赖：1jquery-3.1.1.js、_tc-0.0.1.less、#__tc]
+ * 说明：
+ *
+ * 显示弹窗
+ * _tc.show('*选择器',true|false true);
+ *
+ * 隐藏弹窗
+ * _tc.hide(null |function(){} null);
+ *
+ * loading加载
+ * _tc.loading();
+ * 
+ *  
+ */
+var _tc = (function () {
+    var fe = $('#__tc');
+    fe.css({
+        height: window.innerHeight,
+        width: window.innerWidth
+    });
+    function show(sel, defaultSize) {
+        var now = fe.children(sel);
+        fe.addClass('active');
+        fe.children().removeClass('active');
+        now.addClass('active');
+        now.find('[max-height]').each(function (i, e) {
+            e = $(e);
+            e.css({
+                'height': innerHeight * .8 * parseInt(e.attr('max-height')) / 100,
+                'overflow-y': 'auto'
+            });
+        })
+
+        if (!defaultSize) {
+            now.css({
+                top: window.innerHeight / 2 - now.height() / 2,
+                left: window.innerWidth / 2 - now.width() / 2 - parseInt(now.css('margin-left'))
+            });
+        }
+    }
+
+    function hide(fn) {
+        fe.removeClass('active');
+        fe.children().removeClass('active');
+        typeof fn == 'function' ? window.setTimeout(function () {
+            fn();
+        }, 300) : '';
+    }
+
+    //加载
+    function loading() {
+        show('.loading');
+    }
+
+    fe.find('.close').click(hide);
+
+    return {
+        hide: hide,
+        show: show,
+        loading: loading
     }
 })();
