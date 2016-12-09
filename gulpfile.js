@@ -12,6 +12,12 @@ var
 
 function _js(){
      gulp.src('source/js/*.js')
+        .pipe(concat('main.js')) 
+        .pipe(gulp.dest('statics/js'));
+}
+
+function _jsMinify() { 
+     gulp.src('source/js/*.js')
         .pipe(minify({
             minify: true,
             collapseWhitespace: true,
@@ -43,22 +49,18 @@ function _css(){
         .pipe(gulp.dest('statics/css'));
 }
 
-function _images(){
-    gulp.src('source/image/*.*')
-        .pipe(gulp.dest('statics/image'));
-}
-
 function _build(){
-    _js();
+    _jsMinify();
     _css();
-    _images();
 }
 
 
 gulp.task('default', function () {
     gulp.watch('./source/js/*.js',_js);
     gulp.watch('./source/less/*.less',_css);
-    gulp.watch('./source/images/*.*', _images);
 });
 
 gulp.task('build', _build);
+gulp.task('js', _js);
+gulp.task('jsMinify', _jsMinify);
+gulp.task('css', _css);
