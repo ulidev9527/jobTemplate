@@ -82,7 +82,7 @@ var _wx = (function () {
                 desc: desc,
                 link: link,
                 imgUrl: imgUrl,
-                success: shareEnd,
+                success: shareSuccess,
                 cancel: shareCancel
             }
             wx.onMenuShareQQ(config);
