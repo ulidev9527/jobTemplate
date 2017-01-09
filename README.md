@@ -6,6 +6,8 @@
 
 > [日志](#日志 "查看日志")--*仅展示重要日志列表*
 
+>> [2017-01-09](#2017-01-09)
+
 >> [2016-11-23](#2016-11-23)
 
 > [插件官网网站](#插件官网网站 "插件官网网站")
@@ -128,15 +130,31 @@
 
 >> 时间加粗为重大修改
 
-> ####2016-12-23
+> #### 2017-01-09
+
+>> 1. `gulp`添加[gulp-babel](https://www.npmjs.com/package/gulp-babel)，进行es6处理
+
+>> 2. `gulp`添加[gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)，增加文件加`statics/maps`源码地图
+
+>> 3. `gulp`添加[gulp-plumber](https://www.npmjs.com/package/gulp-plumber)，之前报错有可能导致`gulp`强制关闭，使用次插件处理
+
+>> 4. `gulp`添加[gulp-debug](https://www.npmjs.com/package/gulp-debug)，控制台展示`debug`信息
+
+>> 5. `gulp`添加[gulp-watch](https://www.npmjs.com/package/gulp-watch)，此插件解决`gulp`无法监听文件的增加和删除的文件问题
+
+>> 6. `main.js`和`1zoeDylan-0.0.1.js`部分位置修改为es6语法
+
+>> 7. 添加[gulp](http://www.gulpjs.com.cn/)插件官网
+
+> 2016-12-23
 
 >> 1. `main.js` 分享成功事件错误问题
 
-> ####2016-12-16
+> 2016-12-16
 
 >> 1. `index.html`里面js引用默认source修改为statics
 
-> ####2016-12-09
+> 2016-12-09
 
 >> 1. 去除gulp中的图片处理
 
@@ -144,7 +162,7 @@
 
 >> 3. 默认监听文件改动不进行压缩,执行build任务时，js进行压缩
 
-> ####2016-11-24
+> 2016-11-24
 
 >> 1. main.js添加弹窗
 
@@ -194,3 +212,7 @@
 > [swiper](http://www.swiper.com.cn/)
 
 >> Swiper常用于移动端网站的内容触摸滑动，可用于幻灯片、单页应用等
+
+> [gulp](http://www.gulpjs.com.cn/)
+
+>> 自动化构建工具

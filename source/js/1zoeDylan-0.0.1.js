@@ -15,16 +15,16 @@
  *
  */
 ; (function () {
-    var lastTime = 0;
-    var vendors = ['ms', 'moz', 'webkit', 'o'];
-    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    let lastTime = 0;
+    let vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
         window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
         window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
     if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-        var id = window.setTimeout(function () {
+        let currTime = new Date().getTime();
+        let timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        let id = window.setTimeout(() => {
             callback(currTime + timeToCall);
         }, timeToCall);
         lastTime = currTime + timeToCall;
@@ -42,9 +42,9 @@
  *
 */
 String.prototype.trim = function () {
-    var str = this,
+    let str = this,
         whitespace = ' \n\r\t\f\x0b\xa0\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u3000';
-    for (var i = 0, len = str.length; i < len; i++) {
+    for (let i = 0, len = str.length; i < len; i++) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
             str = str.substring(i);
             break;
@@ -104,7 +104,7 @@ function _randomString(length, chars) {
     length = length || 32;
 
     chars = chars || 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
-    var pwd = '';
+    let pwd = '';
     for (i = 0; i < length; i++) {
         pwd += chars.charAt(_randomNum(chars.length));
     }
@@ -126,22 +126,22 @@ function _randomColor() {
  * cookie处理，默认get、set、clear使用html5的localStorage,没有的情况下使用cookie
  * 
  */
-var _cookie = (function () {
-    var cookie = {};
-    cookie.html5 = window.localStorage ? true : false; 
-    
+const _cookie = (function () {
+    let cookie = {};
+    cookie.html5 = window.localStorage ? true : false;
+
     cookie.setCookie = function (name, cvalue, exdays) {
-        var d = new Date();
+        let d = new Date();
         exdays = exdays || 100000;
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-        var expires = "expires=" + d.toUTCString();
+        let expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + "; " + expires;
     }
     cookie.getCookie = function (name) {
         name = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
             while (c.charAt(0) == ' ') {
                 c = c.substring(1);
             }
@@ -156,10 +156,10 @@ var _cookie = (function () {
     }
     cookie.deleteCookie = cookie.clearCookie;
     cookie.getAllCookie = function () {
-        var all = {};
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
+        let all = {};
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
             while (c.charAt(0) == ' ') {
                 c = c.substring(1);
             }
@@ -169,9 +169,9 @@ var _cookie = (function () {
         return all;
     }
     cookie.clearAllCookie = function () {
-        var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+        let keys = document.cookie.match(/[^ =;]+(?=\=)/g);
         if (keys) {
-            for (var i = keys.length; i--;)
+            for (let i = keys.length; i--;)
                 document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
         }
     }
@@ -189,16 +189,16 @@ var _cookie = (function () {
         }
         cookie.delete = cookie.clear;
         cookie.getAll = function () {
-            var all = {};
-            for (var i = 0; i < window.localStorage.length; i++) {
-                var nowK = window.localStorage.key(i);
+            let all = {};
+            for (let i = 0; i < window.localStorage.length; i++) {
+                let nowK = window.localStorage.key(i);
                 all[nowK] = window.localStorage.getItem(nowK);
             }
             return all;
         }
         cookie.clearAll = function () {
-            for (var i = 0; i < window.localStorage.length; i++) {
-                var nowK = window.localStorage.key(i);
+            for (let i = 0; i < window.localStorage.length; i++) {
+                let nowK = window.localStorage.key(i);
                 window.localStorage.removeItem(nowK);
             }
         }

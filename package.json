@@ -11,7 +11,13 @@
     "gulp-less": "*",
     "gulp-minifier":"*",
     "gulp-autoprefixer":"*",
-    "gulp-concat":"*"
+    "gulp-concat":"*",
+    "gulp-babel":"*",
+    "babel-preset-es2015":"*",
+    "gulp-sourcemaps":"*",
+    "gulp-plumber":"*",
+    "gulp-debug":"*",
+    "gulp-watch":"*"
   },
   "repository": {
     "type": "git",

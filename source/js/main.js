@@ -33,7 +33,7 @@
     }});
 
 */
-var _wx = (function () {
+var _wx = (() => {
     //分享成功
     function shareSuccess() { }
     //分享失败
@@ -72,11 +72,11 @@ var _wx = (function () {
         op.success ? shareSuccess = op.success : '';
         op.cancel ? shareCancel = op.cancel : '';
 
-        wx.error(function (res) {
+        wx.error((res) => {
             console.log('微信配置错误。');
             console.log(res);
         });
-        wx.ready(function () {
+        wx.ready(() => {
             var config = {
                 title: title,
                 desc: desc,
@@ -122,40 +122,42 @@ var _wx = (function () {
  *
  * loading加载
  * _tc.loading();
- * 
+ *
  *  
  */
-var _tc = (function () {
+const _tc = (function () {
     var fe = $('#__tc');
     fe.css({
         height: window.innerHeight,
         width: window.innerWidth
     });
-    function show(sel, defaultSize) {
-        var now = fe.children(sel);
-        fe.addClass('active');
-        fe.children().removeClass('active');
-        now.addClass('active');
-        now.find('[max-height]').each(function (i, e) {
-            e = $(e);
-            e.css({
-                'height': innerHeight * .8 * parseInt(e.attr('max-height')) / 100,
-                'overflow-y': 'auto'
-            });
-        })
+    function show(sel = false, defaultSize) {
+        if (sel) {
+            var now = fe.children(sel);
+            fe.addClass('active');
+            fe.children().removeClass('active');
+            now.addClass('active');
+            now.find('[max-height]').each((i, e) => {
+                e = $(e);
+                e.css({
+                    'height': innerHeight * .8 * parseInt(e.attr('max-height')) / 100,
+                    'overflow-y': 'auto'
+                });
+            })
 
-        if (!defaultSize) {
-            now.css({
-                top: window.innerHeight / 2 - now.height() / 2,
-                left: window.innerWidth / 2 - now.width() / 2 - parseInt(now.css('margin-left'))
-            });
+            if (!defaultSize) {
+                now.css({
+                    top: window.innerHeight / 2 - now.height() / 2,
+                    left: window.innerWidth / 2 - now.width() / 2 - parseInt(now.css('margin-left'))
+                });
+            }
         }
     }
 
-    function hide(fn) {
+    function hide(fn = false) {
         fe.removeClass('active');
         fe.children().removeClass('active');
-        typeof fn == 'function' ? window.setTimeout(function () {
+        typeof fn == 'function' ? window.setTimeout(() => {
             fn();
         }, 300) : '';
     }
