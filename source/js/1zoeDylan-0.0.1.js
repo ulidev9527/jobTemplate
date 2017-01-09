@@ -50,7 +50,7 @@ String.prototype.trim = function () {
             break;
         }
     }
-    for (i = str.length - 1; i >= 0; i--) {
+    for (let i = str.length - 1; i >= 0; i--) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
             str = str.substring(0, i + 1);
             break;
