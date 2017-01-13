@@ -153,7 +153,7 @@ gulp.task('default', function () {
     _css();
     watch('./source/js/plugin/*.js', _jsPluginMinify);
     watch('./source/js/*.js', _js);
-    watch('./source/js/plugin/*.js', _cssPlugin);
+    watch('./source/less/plugin/*.js', _cssPlugin);
     watch('./source/less/*.less', _css);
 });
 
