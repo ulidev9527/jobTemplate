@@ -35,9 +35,9 @@
 */
 var _wx = (() => {
     //分享成功
-    function shareSuccess() { }
+    function shareSuccess() {}
     //分享失败
-    function shareCancel() { }
+    function shareCancel() {}
 
     //微信权限配置
     function setConfig(wxData) {
@@ -77,7 +77,7 @@ var _wx = (() => {
             console.log(res);
         });
         wx.ready(() => {
-            var config = {
+            let config = {
                 title: title,
                 desc: desc,
                 link: link,
@@ -96,6 +96,7 @@ var _wx = (() => {
     function setShareSuccess(fn) {
         typeof fn == 'function' ? (shareSuccess = fn) : '';
     }
+
     function setShareCancel(fn) {
         typeof fn == 'function' ? (shareSuccess = fn) : '';
     }
@@ -125,13 +126,14 @@ var _wx = (() => {
  *
  *  
  */
-const _tc = (function () {
-    var fe = $('#__tc');
+const _tc = (function() {
+    let fe = $('#__tc');
     fe.css({
         height: window.innerHeight,
         width: window.innerWidth
     });
-    function show(sel = false, defaultSize) {
+
+    function show(sel = false, defaultSize = false) {
         if (sel) {
             var now = fe.children(sel);
             fe.addClass('active');

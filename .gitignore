@@ -3,3 +3,5 @@ statics
 *.exe
 *.log
 build
+test
+.vscode

@@ -186,8 +186,8 @@ const _cookie = (function () {
         }
         cookie.clear = function (name) {
             window.localStorage.removeItem(name);
-        }
-        cookie.delete = cookie.clear;
+        } 
+
         cookie.getAll = function () {
             let all = {};
             for (let i = 0; i < window.localStorage.length; i++) {
@@ -206,8 +206,7 @@ const _cookie = (function () {
     } else {
         cookie.set = cookie.setCookie;
         cookie.get = cookie.getCookie;
-        cookie.clear = cookie.clearCookie;
-        cookie.delete = cookie.clear;
+        cookie.clear = cookie.clearCookie; 
         cookie.getAll = cookie.getAllCookie;
         cookie.clearAll = cookie.clearAllCookie;
         cookie.deleteAll = cookie.clearAll;
