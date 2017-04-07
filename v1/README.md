@@ -142,11 +142,15 @@
 
 >> 2. 去除`source/js/plugin`，增加`source/plugin`，
 
->> 3. 取消`js`代码压缩功能和`es6 to es5`处理功能`(babel)`
+>> 3. 取消`js`代码压缩功能和`(gulp-babel)es6 to es5`处理功能
 
->> 4. 取消`./file`，增加`source/image`，监听`source/image/*.*`，有改动移到对应的目录
+>> 4. 增加`source/plugin/babel`,此文件夹下的js文件会自动进行`(gulp-babel)es6 to es5`处理并将文件输出到`source/plugin/`
 
->> 5. `gulp`将成为`V1`版本，如无特殊情况将不进行更新，后面将新增`webpack`版本进行开发
+>> 5. 取消`./file`，增加`source/image`，监听`source/image/*.*`，有改动移到对应的目录
+
+>> 6. `gulp`将成为`V1`版本，如无特殊情况将不进行更新，后面将新增`webpack`版本进行开发
+
+>> 7. 取消`plugin.css`
 
 > #### 2017-01-12
 
