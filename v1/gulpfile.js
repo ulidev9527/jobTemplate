@@ -141,10 +141,7 @@ function _less(glob) {
         .pipe(plumber())
         .pipe(debug({ title: 'less =>' }))
         .pipe(less())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
+        .pipe(autoprefixer())
         .pipe(plumber.stop())
         .pipe(minify({
             minify: true,
