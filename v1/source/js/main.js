@@ -10,7 +10,7 @@
     微信分享[依赖：http://res.wx.qq.com/open/js/jweixin-1.0.0.js]
 
     //添加分享内容 *为必须
-    _wx.run({
+    _wx.config({
         debug: true||false false,
         appId: '',//*
         timestamp: '',//*
@@ -60,7 +60,7 @@ var _wx = (() => {
     }
 
     //微信文案配置
-    function run(config, op) {
+    function config(config, op) {
         setConfig(config);
         //标题
         var
@@ -102,7 +102,7 @@ var _wx = (() => {
     }
 
     return {
-        run: run,
+        config: config,
         setShareSuccess: setShareSuccess,
         setShareCancel: setShareCancel
     }
