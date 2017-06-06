@@ -54,12 +54,6 @@ gulp.task('default', function() {
             _jsBabel(file.history);
         }
     });
-    watch(sourceDir + '/plugin/*.js', (file) => {
-        gulp.start('jsPlugin');
-    });
-    watch(sourceDir + '/plugin/babel/*.js', (file) => {
-        gulp.start('jsPluginBabel');
-    });
     watch(sourceDir + '/less/*.less', (file) => {
         clTP(file.event, file.history);
 
@@ -95,29 +89,7 @@ gulp.task('default', function() {
         }))
         .pipe(plumber.stop())
         .pipe(gulp.dest(outDir + '/css'));
-
-    gulp.start('jsPlugin');
-});
-
-gulp.task('jsPluginBabel', () => {
-    gulp.src(sourceDir + '/plugin/babel/*.js')
-        .pipe(plumber())
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(debug({ title: 'jsPluginBabel =>' }))
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(sourceDir + '/plugin'));
-});
-
-gulp.task('jsPlugin', () => {
-    gulp.src(sourceDir + '/plugin/*.js')
-        .pipe(plumber())
-        .pipe(concat('plugin.js'))
-        .pipe(plumber.stop())
-        .pipe(debug({ title: 'jsPlugin => ' + outDir + '/js/plugin.js' }))
-        .pipe(gulp.dest(outDir + '/js'));
-})
+}); 
 
 function _image(glob) {
     gulp.src(glob)
