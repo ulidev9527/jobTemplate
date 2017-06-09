@@ -68,28 +68,16 @@ gulp.task('default', function() {
         if (file.event == 'change' || file.event == 'add') {
             _image(file.history);
         }
-    })
+    });
+    watch(sourceDir + '/less/false/*.less', (file) => {
+        _run(sourceDir + '/less', _less);
+    });
 
-    gulp.src(sourceDir + '/image/*.*')
-        .pipe(debug({ title: 'image =>' }))
-        .pipe(gulp.dest(outDir + '/image'));
-    gulp.src(sourceDir + '/less/*.less')
-        .pipe(plumber())
-        .pipe(debug({ title: 'less =>' }))
-        .pipe(less())
-        .pipe(minify({
-            minify: true,
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            minifyCSS: true,
-            getKeptComment: function(content, filePath) {
-                var m = content.match(/\/\*![\s\S]*?\*\//img);
-                return m && m.join('\n') + '\n' || '';
-            }
-        }))
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(outDir + '/css'));
-}); 
+
+    _run(sourceDir + '/js', _jsBabel);
+    _run(sourceDir + '/less', _less);
+    _run(sourceDir + '/image', _image);
+});
 
 function _image(glob) {
     gulp.src(glob)
@@ -135,4 +123,32 @@ function _cssAutoprefixer(glob) {
         .pipe(autoprefixer())
         .pipe(plumber.stop())
         .pipe(gulp.dest(outDir + '/css'));
+}
+
+
+/**
+ * 
+ * @param {*string} filePath 文件夹地址
+ * @param {*string} fn 回调  fn('**\**\**.**')
+ */
+function _run(filePath, fn) {
+    fs.readdir(filePath, (e, f) => {
+        if (e) {
+            console.log(e);
+        } else {
+            f.forEach((fi, i) => {
+                fs.stat(filePath + '/' + fi, (e, d) => {
+                    clTP('display', fi);
+                    e ? console.log(e) :
+                        d.isFile() ?
+                        fn([(filePath + '/' + fi)
+                            .replace(/\\\\/g, '\\')
+                            .replace(/\//g, '\\')
+                            .replace(/\\/g, '\\')
+                        ]) :
+                        clTP('error', fi + ' is dir');
+                });
+            });
+        }
+    });
 }

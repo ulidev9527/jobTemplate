@@ -1,0 +1,7 @@
+node_modules
+statics
+*.exe
+*.log
+build
+test
+.vscode
