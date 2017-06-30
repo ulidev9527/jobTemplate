@@ -25,9 +25,9 @@ const
     //源码地图
     sourcemaps = require('gulp-sourcemaps'),
     //输入文件夹
-    inputDir = __dirname + '/source',
+    inputDir = './source',
     //输出文件夹 
-    outputDir = __dirname + '/static';
+    outputDir = './static';
 
 /**
  * 控制台输出
@@ -163,7 +163,7 @@ function _less(glob) {
                 return m && m.join('\n') + '\n' || '';
             }
         }))
-        .pipe(sourcemaps.write(outputDir + '/maps'))
+        .pipe(sourcemaps.write('/maps'))
         .pipe(plumber.stop())
         .pipe(gulp.dest(outputDir + '/css'));
 }

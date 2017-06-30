@@ -115,7 +115,6 @@ var _wx = (() => {
     function setShareCancel(fn) {
         typeof fn == 'function' ? (shareSuccess = fn) : '';
     }
-
     return {
         init: init,
         setShareConfig: setShareConfig,
