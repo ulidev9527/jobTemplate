@@ -1,5 +1,5 @@
 node_modules
-statics
+static
 *.exe
 *.log
 build

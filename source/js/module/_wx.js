@@ -79,9 +79,9 @@ var _wx = (() => {
             //分享信息
             let
                 title = op.title || _op.title,
-                desc = op.desc || _op.title,
-                imgUrl = op.imgUrl || _op.title,
-                link = op.link || _op.title;
+                desc = op.desc || _op.desc,
+                imgUrl = op.imgUrl || _op.imgUrl,
+                link = op.link || _op.link;
 
             //两个事件
             shareSuccess = op.success ? op.success : _op.shareSuccess;

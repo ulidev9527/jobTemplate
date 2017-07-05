@@ -50,6 +50,10 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 日志按时间倒序，重要更新加粗
 
+> 2017-07-05
+
+>> 1. 微信分享一个小BUG修复
+
 > 2017-06-30
 
 >> 1. 修改`less`的`sourcemap`文件路径
