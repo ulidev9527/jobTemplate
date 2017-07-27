@@ -5,3 +5,4 @@ static
 build
 test
 .vscode
+package-lock.json

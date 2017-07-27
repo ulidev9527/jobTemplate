@@ -10,8 +10,6 @@ const
     minify = require('gulp-minifier'),
     //文件合并
     concat = require('gulp-concat'),
-    //es6
-    babel = require('gulp-babel'),
     //防止报错跳出
     plumber = require('gulp-plumber'),
     //debug
@@ -21,13 +19,25 @@ const
     //颜色终端
     color = require('colors-cli'),
     //webpack
-    webpack = require('gulp-webpack'),
-    //源码地图
-    sourcemaps = require('gulp-sourcemaps'),
+    webpack = require('webpack'),
+    //webpack config
+    webpackConfig = require('./webpack.config.js'),
+    //文件路径操作
+    glob = require('glob'),
     //输入文件夹
-    inputDir = './source',
+    inputDir = __dirname + '/source',
     //输出文件夹 
-    outputDir = './static';
+    outputDir = __dirname + '/static',
+    jsPath = inputDir + '/js/*.js',
+    jsModulePath = inputDir + '/js/module/**/*.*',
+    lessPath = inputDir + '/less/*.less',
+    lessModulePath = inputDir + '/less/module/**/*.*',
+    imgPath = inputDir + '/image/*.*';
+
+let
+//   
+    _env = false;
+
 
 /**
  * 控制台输出
@@ -39,7 +49,8 @@ function clTP(event, file, dir) {
     let
         cEvent = color.green_bt,
         cFile = color.green;
-    console.log('【' + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + '】' +
+
+    console.log('\n\n【' + new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString() + '】' +
         cEvent(event + ': ') + cFile(file));
     dir ? clTP(event + ' dir', dir) : '';
 }
@@ -47,7 +58,8 @@ function clTP(event, file, dir) {
 //默认任务
 gulp.task('default', function() {
     //监听js
-    watch(inputDir + '/js/*.js', (file) => {
+    watch(jsPath, (file) => {
+        console.log(file.history);
         clTP(file.event, file.history);
         if (file.event == 'change' || file.event == 'add') {
             _js(file.history);
@@ -58,7 +70,7 @@ gulp.task('default', function() {
     });
 
     //监听less
-    watch(inputDir + '/less/*.less', (file) => {
+    watch(lessPath, (file) => {
         clTP(file.event, file.history);
         if (file.event == 'change' || file.event == 'add') {
             _less(file.history);
@@ -69,9 +81,8 @@ gulp.task('default', function() {
     });
 
     //监听image文件夹
-    watch(inputDir + '/image/*.*', (file) => {
+    watch(imgPath, (file) => {
         clTP(file.event, file.history);
-
         if (file.event == 'change' || file.event == 'add') {
             _image(file.history);
         } else if (file.event == 'unlink') {
@@ -81,72 +92,52 @@ gulp.task('default', function() {
     });
 
     //监听js/module文件夹
-    watch(inputDir + '/js/module/*.js', (file) => {
-        _run(inputDir + '/js', _js);
+    watch(jsModulePath, (file) => {
+        _js(glob.sync(jsPath));
     });
     //监听less/module文件夹
-    watch(inputDir + '/less/module/*.less', (file) => {
-        _run(inputDir + '/less', _less);
+    watch(lessModulePath, (file) => {
+        _less(glob.sync(lessPath));
     });
 
-    _run(inputDir + '/image', _image);
-    _run(inputDir + '/less', _less);
-    _run(inputDir + '/js', _js);
+    //启动后进行首次处理
+    _image(glob.sync(imgPath));
+    _less(glob.sync(lessPath));
+    _js(glob.sync(jsPath));
 });
 
 
 
 /**
  * js自动化处理
- * @param {string} glob 文件地址
- * 1.es6转换成es5
- * 2.压缩js
- *
+ * @param {String|Array} path 文件地址
  */
-function _js(glob) {
-    let
-        name = glob[0].split('\\');
-    name = name[name.length - 1];
-
-    gulp.src(glob)
-        .pipe(plumber())
-        .pipe(webpack({
-            output: {
-                filename: name
+function _js(path) {
+    webpack(webpackConfig(_env, path), (err, stats) => {
+        if (err) {
+            console.error(err.stack || err);
+            if (err.details) {
+                console.error(err.details);
             }
-        }))
-        // es6 - es5
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(debug({ title: 'jsBabel =>' }))
-        // 压缩
-        .pipe(minify({
-            minify: true,
-            collapseWhitespace: true,
-            conservativeCollapse: true,
-            minifyJS: true,
-            getKeptComment: function(content, filePath) {
-                var m = content.match(/\/\*![\s\S]*?\*\//img);
-                return m && m.join('\n') + '\n' || '';
-            }
-        }))
-        .pipe(debug({ title: 'minify =>' }))
-        .pipe(plumber.stop())
-        .pipe(gulp.dest(outputDir + '/js'));
+            return;
+        }
+        console.log(stats.toString({
+            chunks: false, // 使构建过程更静默无输出
+            colors: true // 在控制台展示颜色
+        }));
+    });
 }
 
 /**
  * less自动化处理
- * @param {string} glob 文件地址
+ * @param {String|Array} path 文件地址
  * 1.css兼容处理
  * 2.压缩css
  *
  */
-function _less(glob) {
-    gulp.src(glob)
+function _less(path) {
+    gulp.src(path)
         .pipe(plumber())
-        .pipe(sourcemaps.init())
         .pipe(debug({ title: 'less =>' }))
         //less转css
         .pipe(less())
@@ -163,41 +154,17 @@ function _less(glob) {
                 return m && m.join('\n') + '\n' || '';
             }
         }))
-        .pipe(sourcemaps.write('/maps'))
         .pipe(plumber.stop())
         .pipe(gulp.dest(outputDir + '/css'));
 }
 
-//图片处理
-function _image(glob) {
-    gulp.src(glob)
+/**
+ * 图片处理
+ * 考虑到性能问题，暂时没有添加图片压缩功能，这里只是一个复制图片
+ * @param {String|Array} path 图片地址
+ */
+function _image(path) {
+    gulp.src(path)
         .pipe(debug({ title: 'image =>' }))
         .pipe(gulp.dest(outputDir + '/image'));
-}
-
-/**
- * 
- * @param {*string} filePath 文件夹地址
- * @param {*string} fn 回调  fn('**\**\**.**')
- */
-function _run(filePath, fn) {
-    fs.readdir(filePath, (e, f) => {
-        if (e) {
-            console.log(e);
-        } else {
-            f.forEach((fi, i) => {
-                fs.stat(filePath + '/' + fi, (e, d) => {
-                    clTP('display', fi);
-                    e ? console.log(e) :
-                        d.isFile() ?
-                        fn([(filePath + '/' + fi)
-                            .replace(/\\\\/g, '\\')
-                            .replace(/\//g, '\\')
-                            .replace(/\\/g, '\\')
-                        ]) :
-                        clTP('error', fi + ' is dir');
-                });
-            });
-        }
-    });
 }

@@ -124,8 +124,4 @@ var _wx = (() => {
 })();
 
 
-typeof exports === 'object' && typeof module !== 'undefined' ?
-    module.exports = _wx :
-    typeof define === 'function' && define.amd ?
-    define(function() { return _wx; }) :
-    this._wx = _wx;
+module.exports = _wx;
