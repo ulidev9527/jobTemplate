@@ -1,5 +1,6 @@
 const
     fs = require('fs'),
+    path = require('path'),
     //主入库 
     gulp = require('gulp'),
     //less文件处理
@@ -57,37 +58,33 @@ function clTP(event, file, dir) {
 
 //默认任务
 gulp.task('default', function() {
-    //监听js
-    watch(jsPath, (file) => {
-        console.log(file.history);
-        clTP(file.event, file.history);
-        if (file.event == 'change' || file.event == 'add') {
-            _js(file.history);
-        } else if (file.event == 'unlink') {
-            let pathArr = file.history[0].split('\\');
-            fs.unlinkSync(outputDir + '/js/' + pathArr[pathArr.length - 1]);
-        }
-    });
 
-    //监听less
-    watch(lessPath, (file) => {
+    //监听主文件夹
+    watch(inputDir + '/*/*.*', (file) => {
         clTP(file.event, file.history);
-        if (file.event == 'change' || file.event == 'add') {
-            _less(file.history);
-        } else if (file.event == 'unlink') {
-            let pathArr = file.history[0].split('\\');
-            fs.unlinkSync(outputDir + '/css/' + pathArr[pathArr.length - 1].split('.')[0] + '.css');
-        }
-    });
+        let
+            fileArr = path.dirname(file.history[0]).split(/\/|\\/),
+            type = fileArr[fileArr.length - 1];
 
-    //监听image文件夹
-    watch(imgPath, (file) => {
-        clTP(file.event, file.history);
         if (file.event == 'change' || file.event == 'add') {
-            _image(file.history);
+            type == 'js' ? _js(file.history) :
+                type == 'less' ? _less(file.history) :
+                type == 'image' ? _image(file.history) : '';
+
         } else if (file.event == 'unlink') {
-            let pathArr = file.history[0].split('\\');
-            fs.unlinkSync(outputDir + '/image/' + pathArr[pathArr.length - 1]);
+            let
+                staticPath = outputDir + '/' + type.replace(/less/, 'css') + '/' +
+                (type != 'image' ? path.basename(file.history[0])
+                    .replace(/\..+$/, '.' + type)
+                    .replace(/\.less/, '.css') : path.basename(file.history[0])),
+
+                mapsPath = outputDir + '/' + type.replace(/less/, 'css') + '/maps/' +
+                (type != 'image' ? path.basename(file.history[0])
+                    .replace(/\..+$/, '.' + type)
+                    .replace(/\.less/, '.css') : path.basename(file.history[0])) + '.map';
+
+            fs.existsSync(staticPath) && fs.unlinkSync(staticPath);
+            fs.existsSync(mapsPath) && fs.unlinkSync(mapsPath);
         }
     });
 
@@ -107,13 +104,12 @@ gulp.task('default', function() {
 });
 
 
-
 /**
  * js自动化处理
- * @param {String|Array} path 文件地址
+ * @param {String|Array} file 文件地址
  */
-function _js(path) {
-    webpack(webpackConfig(_env, path), (err, stats) => {
+function _js(file) {
+    webpack(webpackConfig(_env, file), (err, stats) => {
         if (err) {
             console.error(err.stack || err);
             if (err.details) {
@@ -130,13 +126,13 @@ function _js(path) {
 
 /**
  * less自动化处理
- * @param {String|Array} path 文件地址
+ * @param {String|Array} file 文件地址
  * 1.css兼容处理
  * 2.压缩css
  *
  */
-function _less(path) {
-    gulp.src(path)
+function _less(file) {
+    gulp.src(file)
         .pipe(plumber())
         .pipe(debug({ title: 'less =>' }))
         //less转css
@@ -161,10 +157,10 @@ function _less(path) {
 /**
  * 图片处理
  * 考虑到性能问题，暂时没有添加图片压缩功能，这里只是一个复制图片
- * @param {String|Array} path 图片地址
+ * @param {String|Array} file 图片地址
  */
-function _image(path) {
-    gulp.src(path)
+function _image(file) {
+    gulp.src(file)
         .pipe(debug({ title: 'image =>' }))
         .pipe(gulp.dest(outputDir + '/image'));
 }
