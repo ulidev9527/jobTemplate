@@ -28,7 +28,7 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 > 2. 安装`gulp`全局包 `npm i -g gulp`
 
-> 3. 安装项目包 `npm i gulp gulp-debug gulp-watch gulp-plumber gulp-minifier gulp-autoprefixer gulp-concat gulp-less colors-cli webpack babel-loader style-loader css-loader less-loader babel-plugin-transform-react-jsx glob gulp-webserver`
+> 3. 安装项目包 `npm i`
 
 > 4. 运行命令：`gulp`
 
