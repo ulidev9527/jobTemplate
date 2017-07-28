@@ -15,6 +15,8 @@ const
     plumber = require('gulp-plumber'),
     //debug
     debug = require('gulp-debug'),
+    //服务器
+    webserver = require('gulp-webserver'),
     //文件监听
     watch = require('gulp-watch'),
     //颜色终端
@@ -33,7 +35,8 @@ const
     jsModulePath = inputDir + '/js/module/**/*.*',
     lessPath = inputDir + '/less/*.less',
     lessModulePath = inputDir + '/less/module/**/*.*',
-    imgPath = inputDir + '/image/*.*';
+    imgPath = inputDir + '/image/*.*',
+    port = 3000;
 
 let
 //   
@@ -57,7 +60,7 @@ function clTP(event, file, dir) {
 }
 
 //默认任务
-gulp.task('default', function() {
+gulp.task('default', ['webserver'], function() {
 
     //监听主文件夹
     watch(inputDir + '/*/*.*', (file) => {
@@ -101,6 +104,15 @@ gulp.task('default', function() {
     _image(glob.sync(imgPath));
     _less(glob.sync(lessPath));
     _js(glob.sync(jsPath));
+});
+
+gulp.task('webserver', () => {
+    gulp.src('./')
+        .pipe(webserver({
+            directoryListing: true,
+            open: true,
+            port: port
+        }));
 });
 
 
