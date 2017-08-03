@@ -84,6 +84,10 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 日志按时间倒序，重要更新加粗
 
+> 2017-08-03 15:15:34
+
+>> 1. 添加默认`js`处理为`es2015`
+
 > 2017-07-28
 
 >> 1. 添加`gulp-webserver`启动服务
