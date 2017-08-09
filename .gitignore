@@ -1,8 +1,3 @@
 node_modules
 static
-*.exe
-*.log
-build
-test
 .vscode
-package-lock.json

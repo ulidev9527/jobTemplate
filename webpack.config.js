@@ -1,5 +1,6 @@
 const
-    path = require('path');
+    path = require('path'),
+    webpack = require('webpack');
 
 /**
  * webpack >= 3.0 配置
@@ -55,6 +56,12 @@ module.exports = (env, files) => {
                 }, {
                     loader: "less-loader" // compiles Less to CSS
                 }]
+            }, {
+                test: /\.ts$|\.tsx$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'ts-loader'
+                }
             }]
         },
         //配置外部包，此处配置了外部包后就不会在代码中进行合并

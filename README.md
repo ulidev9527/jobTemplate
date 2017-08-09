@@ -22,9 +22,13 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 > 取它们两个各自优点来共同处理项目.
 
+> 这个项目创建初衷是为了方便快速进行项目开发，不需要从头开始配置一大堆东西
+
+> 项目融合了`gulp`、`webpack`、`js`、`ts`、`jsx`、`tsx`这些东西是为了后期开发中，前端可能使用到的语言语法进行处理。
+
 # 开始
 
-> 1. 你得先有一个`node`并且大于`>v8.0`
+> 1. 你得先有一个`node @>v6.0`
 
 > 2. 安装`gulp`全局包 `npm i -g gulp`
 
@@ -32,6 +36,9 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 > 4. 运行命令：`gulp`
 
+# 扩展
+
+> 1. `gulp env` 正式环境下进行代码处理，与直接运行`gulp`相比,`js`会进行压缩，并且不会生成`.map`文件,`less`文件会吧所有注释去掉.
 
 
 # 技术
@@ -44,6 +51,10 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 > 4. `gulp` [中文](http://www.gulpjs.com.cn/) [EN](https://gulpjs.com/)
 
+> 5. `typescript` [中文](https://www.tslang.cn/) [EN](http://www.typescriptlang.org/)
+
+> 6. `js` 这个都不会就不用做前端了。
+
 # 兼容
 
 理论上支持现在常用的所有浏览器
@@ -54,9 +65,6 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 >> 帮助文档，如果有什么疑问可以去这里面看
 
-> `./plugin`
-
->> 用于存放一些项目使用插件，不进行自动化处理。
 
 > **`./source`**
 
@@ -74,6 +82,10 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 >> 功能同上，详情描述请直接查看文件注释
 
+> **`./tsconfig.json`**
+
+>> 仅仅为了解决一个编译`.ts`报错问题，没有它就报错
+
 > **`./index.html`**
 
 >> 一个空`html`页面，里面包含了基本的`meta`。
@@ -83,6 +95,24 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 # 日志
 
 日志按时间倒序，重要更新加粗
+
+> #### 2017-08-09
+
+>> 1. 添加对`ts`和`tsx`的支持
+
+>> 2. 去掉无用的`./source/module/_wx.js` 需要使用移步[zoedylan-tool](https://github.com/zoeDylan/zoeDylan-tool)
+
+>> 3. `gulp`内部加载`webpack.config.js`修改为动态加载,方便修改`webpack.config.js`后无需重启`gulp`
+
+>> 4. `css reset`修改为`normalize.css`
+
+>> 5. 清理掉一些没必要的文件和文件夹
+
+>> 6. 取消`./plugin`文件夹,后期可以自己手动添加
+
+>> 7. 添加`tsconfig.json`,解决`ts-loader`报错问题
+
+>> 8. 添加更多说明
 
 > 2017-08-03 15:15:34
 

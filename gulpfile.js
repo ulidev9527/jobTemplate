@@ -24,7 +24,11 @@ const
     //webpack
     webpack = require('webpack'),
     //webpack config
-    webpackConfig = require('./webpack.config.js'),
+    webpackConfig = (op, file) => {
+        //清除配置缓存
+        require.cache[require.resolve('./webpack.config.js')] = null;
+        return require('./webpack.config.js')(op, file);
+    },
     //文件路径操作
     glob = require('glob'),
     //输入文件夹
@@ -39,7 +43,7 @@ const
     port = 3000;
 
 let
-//   
+//正式环境判断函数
     _env = false;
 
 
@@ -93,10 +97,12 @@ gulp.task('default', ['webserver'], function() {
 
     //监听js/module文件夹
     watch(jsModulePath, (file) => {
+        clTP(file.event, file.history);
         _js(glob.sync(jsPath));
     });
     //监听less/module文件夹
     watch(lessModulePath, (file) => {
+        clTP(file.event, file.history);
         _less(glob.sync(lessPath));
     });
 
@@ -104,6 +110,10 @@ gulp.task('default', ['webserver'], function() {
     _image(glob.sync(imgPath));
     _less(glob.sync(lessPath));
     _js(glob.sync(jsPath));
+});
+
+gulp.task('env', ['default'], () => {
+    _env = true;
 });
 
 gulp.task('webserver', () => {
@@ -158,8 +168,10 @@ function _less(file) {
             conservativeCollapse: true,
             minifyCSS: true,
             getKeptComment: function(content, filePath) {
-                var m = content.match(/\/\*![\s\S]*?\*\//img);
-                return m && m.join('\n') + '\n' || '';
+                if (!_env) {
+                    var m = content.match(/\/\*![\s\S]*?\*\//img);
+                    return m && m.join('\n') + '\n' || '';
+                }
             }
         }))
         .pipe(plumber.stop())
