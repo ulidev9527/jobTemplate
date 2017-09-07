@@ -9,8 +9,6 @@ const
     autoprefixer = require('gulp-autoprefixer'),
     //压缩
     minify = require('gulp-minifier'),
-    //文件合并
-    concat = require('gulp-concat'),
     //防止报错跳出
     plumber = require('gulp-plumber'),
     //debug
@@ -113,6 +111,8 @@ gulp.task('default', ['webserver'], function() {
 });
 
 gulp.task('env', ['default'], () => {
+
+    
     _env = true;
 });
 

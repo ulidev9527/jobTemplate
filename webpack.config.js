@@ -13,7 +13,7 @@ module.exports = (env, files) => {
         entry: (() => {
             const
                 listObj = {};
-            //路径和生存数据提取
+            //路径和生成数据提取
             files.forEach((file, i) => {
                 listObj[path.parse(file).name] = file;
             });
@@ -43,8 +43,7 @@ module.exports = (env, files) => {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        plugins: ["transform-react-jsx"],
-                        presets: ["es2015"]
+                        plugins: ["transform-react-jsx"]
                     }
                 }
             }, {
@@ -70,6 +69,10 @@ module.exports = (env, files) => {
             'react': 'React',
             //<script src="//cdn.bootcss.com/react/15.6.1/react-dom.min.js"></script>
             'react-dom': 'ReactDOM'
+        },
+        resolve: {
+            //模块自动解析后缀
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
         }
     }
 }

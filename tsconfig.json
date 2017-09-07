@@ -1,3 +1,13 @@
 {
-  
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
+        "diagnostics": true,
+        "listEmittedFiles": true,
+        "jsx": "react"
+    }
 }
