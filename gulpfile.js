@@ -112,7 +112,7 @@ gulp.task('default', ['webserver'], function() {
 
 gulp.task('env', ['default'], () => {
 
-    
+
     _env = true;
 });
 
@@ -163,15 +163,13 @@ function _less(file) {
         .pipe(autoprefixer())
         //压缩
         .pipe(minify({
-            minify: true,
+            minify: _env,
             collapseWhitespace: true,
             conservativeCollapse: true,
             minifyCSS: true,
             getKeptComment: function(content, filePath) {
-                if (!_env) {
-                    var m = content.match(/\/\*![\s\S]*?\*\//img);
-                    return m && m.join('\n') + '\n' || '';
-                }
+                var m = content.match(/\/\*![\s\S]*?\*\//img);
+                return m && m.join('\n') + '\n' || '';
             }
         }))
         .pipe(plumber.stop())
