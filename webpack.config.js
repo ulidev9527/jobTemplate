@@ -43,6 +43,7 @@ module.exports = (env, files) => {
                 use: {
                     loader: 'babel-loader',
                     options: {
+                        presets: ['es2015'],
                         plugins: ["transform-react-jsx"]
                     }
                 }
