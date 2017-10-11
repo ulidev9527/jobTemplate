@@ -21,9 +21,9 @@ module.exports = (env, files) => {
         })(),
         output: {
             filename: '[name].js',
-            path: __dirname + '\\static\\js',
+            path: path.join(__dirname, 'static', 'js'),
             pathinfo: !env,
-            sourceMapFilename: "maps\\[name].js.map"
+            sourceMapFilename: "maps/[name].js.map"
         },
         devtool: !env && 'source-map',
         plugins: (() => {
