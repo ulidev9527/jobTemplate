@@ -96,6 +96,10 @@ V1版本移步: [jobTemplate_v1](https://github.com/zoeDylan/jobTemplate_v1)
 
 日志按时间倒序，重要更新加粗
 
+2017-11-28
+
+1. 添加图片压缩
+
 2017-10-09
 
 1. 修复没有转换成`es2015`的BUG

@@ -9,6 +9,8 @@ const
     autoprefixer = require('gulp-autoprefixer'),
     //压缩
     minify = require('gulp-minifier'),
+    //图片压缩
+    zimg = require('zimg'),
     //防止报错跳出
     plumber = require('gulp-plumber'),
     //debug
@@ -111,8 +113,6 @@ gulp.task('default', ['webserver'], function() {
 });
 
 gulp.task('env', ['default'], () => {
-
-
     _env = true;
 });
 
@@ -182,7 +182,6 @@ function _less(file) {
  * @param {String|Array} file 图片地址
  */
 function _image(file) {
-    gulp.src(file)
-        .pipe(debug({ title: 'image =>' }))
-        .pipe(gulp.dest(outputDir + '/image'));
+    console.log('zimg =>', file);
+    zimg(file, outputDir + '/image');
 }
