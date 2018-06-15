@@ -3,7 +3,8 @@
     "version": "0.2.2",
     "description": "a gulp and webpack template",
     "main": "gulpfile.js",
-    "dependencies": {
+    "dependencies": {},
+    "devDependencies": {
         "babel-core": "^6.25.0",
         "babel-loader": "^7.1.1",
         "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -28,7 +29,6 @@
         "webpack": "^3.4.1",
         "zimg": "^1.1.0"
     },
-    "devDependencies": {},
     "scripts": {
         "test": "gulp"
     },
